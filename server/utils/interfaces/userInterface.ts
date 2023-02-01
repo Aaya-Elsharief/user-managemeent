@@ -1,9 +1,9 @@
 
 interface userInterface{
-    username: string | undefined,
-    email: string | undefined,
-    password: string | undefined,
-    age: number | undefined,
+    username: string ,
+    email: string ,
+    password: string ,
+    age: number ,
 }
 
 export default userInterface
