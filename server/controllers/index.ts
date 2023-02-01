@@ -1,3 +1,6 @@
-import signup from "./user/signup"
+import {signup, login} from "./user/"
 
-export default signup
+export  {
+    signup,
+    login,
+}
