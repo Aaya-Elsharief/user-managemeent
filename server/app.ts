@@ -3,10 +3,12 @@ import cookieParser from 'cookie-parser'
 import compression from 'compression'
 import router from './routes'
 import dotenv from 'dotenv'
+import connectionDb from './database/connection'
 dotenv.config()
 
 
 const app = express()
+connectionDb();
 
 app.set('port', process.env.PORT || 3000)
 
