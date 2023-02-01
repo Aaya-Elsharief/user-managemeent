@@ -5,7 +5,6 @@ const checkUser = async(username:string, email:string) =>{
         const usernameCheck  = await User.find({username}).count();
         const emailCheck  = await User.find({email}).count();
 
-
         return Promise.resolve({emailCheck,usernameCheck} );
       
     } catch (error) {
