@@ -1,15 +1,24 @@
-import User from "../models";
+import { User, Admin } from "../models";
 
-const checkUser = async(username:string, email:string) =>{
-    try{
-        const usernameCheck  = await User.find({username}).count();
-        const emailCheck  = await User.find({email}).count();
+const checkUser = async (role: string, username: string, email: string) => {
+  try {
+    let nameCheck;
+    let emailCheck;
 
-        return Promise.resolve({emailCheck,usernameCheck} );
-      
-    } catch (error) {
-      return Promise.reject(error);
+    if (role === 'user') {
+      nameCheck = await User.find({ username }).count();
+      emailCheck = await User.find({ email }).count();
+    } else {
+      nameCheck = await Admin.find({ username }).count();
+      emailCheck = await Admin.find({ email }).count();
+
     }
+
+    return Promise.resolve({ nameCheck, emailCheck });
+
+  } catch (error) {
+    return Promise.reject(error);
+  }
 
 }
 
