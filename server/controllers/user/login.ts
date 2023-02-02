@@ -1,8 +1,8 @@
 import { Request, Response } from "express"
 import  {compare} from "bcryptjs"
 import User from "../../models";
-import { userInterface , CustomError} from "../../utils"
-import generatToken from '../../utils/jwt/generatToken'
+import { userInterface , CustomError, generatToken} from "../../utils"
+
 
 const login = async(req: Request, res: Response) => {
    try{
