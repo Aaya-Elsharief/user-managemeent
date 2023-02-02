@@ -1,7 +1,8 @@
-import {signup, login, profile} from "./user/"
+import { signup, login, profile, updateProfile } from "./user/"
 
-export  {
+export {
     signup,
     login,
     profile,
+    updateProfile,
 }

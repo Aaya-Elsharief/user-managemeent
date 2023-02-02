@@ -1,9 +1,9 @@
 
-interface userInterface{
-    username: string ,
-    email: string ,
-    password: string ,
-    age: number ,
+interface userInterface {
+    username: string,
+    email: string,
+    password: string,
+    age: number,
 }
 
 export default userInterface
