@@ -4,8 +4,8 @@ dotenv.config();
 
 const {SECRET_KEY : SECRET_KEY}  = process.env;
 
-const generatToken = async(id: string) => {
-    return await sign({id}, SECRET_KEY as Secret)
+const generatToken = async(role:string, id: string) => {
+    return await sign({id, role}, SECRET_KEY as Secret)
 }
 
 export default generatToken;
