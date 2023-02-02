@@ -1,13 +1,13 @@
 import { Response } from "express";
-import User from "../../models";
-import { userInterface, userValidation, CustomError } from "../../utils";
+import { User } from "../../models";
+import { userInterface, validation, CustomError } from "../../utils";
 
 const updateProfile = async (req: any, res: Response) => {
     try {
         const id = req.user.id;
 
         const { username, email, age }: userInterface = req.body
-        await userValidation('upate', { username, email, age, password: "" })
+        await validation('user', 'upate', { username, email, age, password: "" })
 
         const emailExist = await User.findOne({ email, _id: { $ne: id } });
         const usernameExist = await User.findOne({ username, _id: { $ne: id } });

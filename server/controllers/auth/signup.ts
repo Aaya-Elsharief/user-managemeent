@@ -1,22 +1,26 @@
 import { Request, Response } from "express"
 import { hash } from "bcryptjs"
-import { userValidation, userInterface, CustomError } from "../../utils"
-import { checkUser, createUser } from "../../queries/"
+import { validation, userInterface, CustomError } from "../../utils"
+import { checkUser, createNew } from "../../queries"
 
 const signup = async (req: Request, res: Response) => {
   try {
+
+    let role: string;
+    req.originalUrl.includes('/user/') ? role = 'user' : role = 'admin';
+
     const { username, email, password, age }: userInterface = req.body
-    await userValidation(null, { username, email, password, age })
+    await validation(role, null, { username, email, password, age })
 
-    const { emailCheck, usernameCheck } = await checkUser(username, email);
+    const { nameCheck, emailCheck } = await checkUser(role, username, email);
+    if (nameCheck) throw new CustomError(409, 'username already exist');
     if (emailCheck) throw new CustomError(409, 'email already exist');
-    if (usernameCheck) throw new CustomError(409, 'username already exist');
-
 
     const hashedPassword = await hash(password, 12);
 
-    await createUser({ username, email, password: hashedPassword, age });
-    res.send('User Created Successfully')
+    await createNew(role, { username, email, password: hashedPassword, age });
+
+    res.send(`${role} created successfully`)
 
   } catch (error) {
     if (error instanceof Error)
