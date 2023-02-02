@@ -1,2 +1,7 @@
 import User from "./user";
-export default User;
+import Admin from "./admin";
+
+export {
+    User,
+    Admin
+};

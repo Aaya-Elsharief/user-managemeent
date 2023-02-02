@@ -1,7 +1,7 @@
 import checkUser from "./checkNewUser";
-import createUser from "./createUser";
+import createNew from "./createNew";
 
-export{
+export {
     checkUser,
-    createUser
+    createNew
 }

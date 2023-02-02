@@ -1,10 +1,10 @@
 import userInterface from "./interfaces"
-import userValidation from "./validation"
+import { validation } from "./validation"
 import CustomError from "./customErrors"
-import { generatToken,verifyToken } from './jwt'
+import { generatToken, verifyToken } from './jwt'
 
 export {
-    userValidation,
+    validation,
     userInterface,
     CustomError,
     generatToken,

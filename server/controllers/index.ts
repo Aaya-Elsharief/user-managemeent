@@ -1,4 +1,5 @@
-import { signup, login, profile, updateProfile } from "./user/"
+import { signup, login } from "./auth"
+import {profile, updateProfile} from "./user/"
 
 export {
     signup,
