@@ -1,20 +1,25 @@
 import { Request, Response } from "express"
 import { compare } from "bcryptjs"
-import { User } from "../../models";
+import { User, Admin } from "../../models";
 import { userInterface, CustomError, generatToken } from "../../utils"
 
 
 const login = async (req: Request, res: Response) => {
     try {
+        let role: string;
+        req.originalUrl.includes('/user/') ? role = 'user' : role = 'admin';
+
         const { username, password }: userInterface = req.body;
 
-        const user = await User.findOne({ username })
-        if (!user) throw new CustomError(401, 'invalid username')
+        const person = role === 'user' ?
+            await User.findOne({ username }) :
+            await Admin.findOne({ username })
+        if (!person) throw new CustomError(401, 'invalid username')
 
-        const match = await compare(password, user.password)
+        const match = await compare(password, person.password)
         if (!match) throw new CustomError(401, 'invalid password')
 
-        const token = await generatToken(user.id)
+        const token = await generatToken(role, person.id)
         res.cookie("token", token).send({ "token": token })
 
     } catch (error) {
