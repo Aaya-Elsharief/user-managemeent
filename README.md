@@ -24,10 +24,11 @@ A simple and secure REST API built using **Express.js** and **MongoDB** to demon
 git clone https://github.com/Aaya-Elsharief/user-managemeent.git
 cd user-managemeent
 npm install
+```
 
-
-## Create a .env file with the following:
-
+## Create a ```.env``` file with the following:
+```
 PORT=5000
 MONGO_URI=your_mongodb_uri
 JWT_SECRET=your_jwt_secret
+```
